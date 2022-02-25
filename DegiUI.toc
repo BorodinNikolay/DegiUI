@@ -1,0 +1,16 @@
+## Interface: 20503
+## Author: Degi
+## Version: beta 1
+## Title: DegiUI
+## Notes: Ахуительный UI
+## SavedVariablesPerCharacter: DegiUIOptions, DegiUI_StringSize, DegiUI_NumSize
+## OptionalDeps: Dominos, ModernTargetFrame, Leatrix_Plus
+
+config.lua
+core\frames.lua
+core\extra.lua
+core\buffs.lua
+core\actionbars.lua
+core\auras.lua
+core\minimap.lua
+# core\moreframes.lua
