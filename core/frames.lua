@@ -73,140 +73,126 @@ CF:RegisterEvent("GROUP_ROSTER_UPDATE")
 
 function ApplyThickness()
 	
-    if DegiUIOptions.thickness then
-        
-		hooksecurefunc('TargetFrame_CheckClassification', function(self, forceNormalTexture)
-			local classification = UnitClassification(self.unit);
-			if ( classification == "worldboss" or classification == "elite" ) then
-				self.borderTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetingFrame-Elite")
-				self.borderTexture:SetVertexColor(0.05,0.05,0.05)
-			elseif ( classification == "rareelite" ) then
-				self.borderTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetingFrame-Rare-Elite")
-				self.borderTexture:SetVertexColor(0.05,0.05,0.05)
-			elseif ( classification == "rare" ) then
-				self.borderTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetingFrame-Rare")
-				self.borderTexture:SetVertexColor(0.05,0.05,0.05)
-			else
-				self.borderTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetingFrame")
-				self.borderTexture:SetVertexColor(0.05,0.05,0.05)
-			end
-		end)
+	hooksecurefunc('TargetFrame_CheckClassification', function(self, forceNormalTexture)
+		local classification = UnitClassification(self.unit);
+		if ( classification == "worldboss" or classification == "elite" ) then
+			self.borderTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetingFrame-Elite")
+			self.borderTexture:SetVertexColor(0.05,0.05,0.05)
+		elseif ( classification == "rareelite" ) then
+			self.borderTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetingFrame-Rare-Elite")
+			self.borderTexture:SetVertexColor(0.05,0.05,0.05)
+		elseif ( classification == "rare" ) then
+			self.borderTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetingFrame-Rare")
+			self.borderTexture:SetVertexColor(0.05,0.05,0.05)
+		else
+			self.borderTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetingFrame")
+			self.borderTexture:SetVertexColor(0.05,0.05,0.05)
+		end
+	end)
 
-		--Player Name
+	--Player Name
 
-		-- PlayerFrame.name:ClearAllPoints()
-		-- PlayerFrame.name:SetPoint('TOP', PlayerFrameHealthBar, 0,40)
+	-- PlayerFrame.name:ClearAllPoints()
+	-- PlayerFrame.name:SetPoint('TOP', PlayerFrameHealthBar, 0,40)
+	
+	--Rest Glow
+
+	-- PlayerStatusTexture:SetTexture()
+	-- PlayerRestGlow:SetAlpha(0)
+
+	--Player Frame
+
+	function DegiUIPlayerFrame(self)
+		PlayerFrameTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetingFrame");
+		self.name:Hide();
+		self.name:ClearAllPoints();
+		self.name:SetPoint("CENTER", PlayerFrame, "CENTER",50.5, 36);
+		self.healthbar:SetPoint("TOPLEFT",106,-24);
+		self.healthbar:SetHeight(20);
+		self.healthbar.LeftText:ClearAllPoints();
+		self.healthbar.LeftText:SetPoint("LEFT",self.healthbar,"LEFT",8,0);
+		self.healthbar.RightText:ClearAllPoints();
+		self.healthbar.RightText:SetPoint("RIGHT",self.healthbar,"RIGHT",-5,0);
+		self.healthbar.TextString:SetPoint("CENTER", self.healthbar, "CENTER", 0, 0);
+		self.manabar:SetPoint("TOPLEFT",106,-45);
+		self.manabar:SetHeight(20);
+		self.manabar.LeftText:ClearAllPoints();
+		self.manabar.LeftText:SetPoint("LEFT",self.manabar,"LEFT",8,0);
+		self.manabar.RightText:ClearAllPoints();
+		self.manabar.RightText:SetPoint("RIGHT",self.manabar,"RIGHT",-5,0);
+		self.manabar.TextString:SetPoint("CENTER",self.manabar,"CENTER",0,0);
+		PlayerFrameGroupIndicatorText:ClearAllPoints();
+		PlayerFrameGroupIndicatorText:SetPoint("BOTTOMLEFT", PlayerFrame,"TOP",0,-20);
+		PlayerFrameGroupIndicatorLeft:Hide();
+		PlayerFrameGroupIndicatorMiddle:Hide();
+		PlayerFrameGroupIndicatorRight:Hide();
+		PlayerPVPIcon:Hide()
+
 		
-		--Rest Glow
-
-		-- PlayerStatusTexture:SetTexture()
-		-- PlayerRestGlow:SetAlpha(0)
-
-		--Player Frame
-
-		function DegiUIPlayerFrame(self)
-			PlayerFrameTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetingFrame");
-			self.name:Hide();
-			self.name:ClearAllPoints();
-			self.name:SetPoint("CENTER", PlayerFrame, "CENTER",50.5, 36);
-			self.healthbar:SetPoint("TOPLEFT",106,-24);
-			self.healthbar:SetHeight(20);
-			self.healthbar.LeftText:ClearAllPoints();
-			self.healthbar.LeftText:SetPoint("LEFT",self.healthbar,"LEFT",8,0);
-			self.healthbar.RightText:ClearAllPoints();
-			self.healthbar.RightText:SetPoint("RIGHT",self.healthbar,"RIGHT",-5,0);
-			self.healthbar.TextString:SetPoint("CENTER", self.healthbar, "CENTER", 0, 0);
-			self.manabar:SetPoint("TOPLEFT",106,-45);
-			self.manabar:SetHeight(20);
-			self.manabar.LeftText:ClearAllPoints();
-			self.manabar.LeftText:SetPoint("LEFT",self.manabar,"LEFT",8,0);
-			self.manabar.RightText:ClearAllPoints();
-			self.manabar.RightText:SetPoint("RIGHT",self.manabar,"RIGHT",-5,0);
-			self.manabar.TextString:SetPoint("CENTER",self.manabar,"CENTER",0,0);
-			PlayerFrameGroupIndicatorText:ClearAllPoints();
-			PlayerFrameGroupIndicatorText:SetPoint("BOTTOMLEFT", PlayerFrame,"TOP",0,-20);
-			PlayerFrameGroupIndicatorLeft:Hide();
-			PlayerFrameGroupIndicatorMiddle:Hide();
-			PlayerFrameGroupIndicatorRight:Hide();
-		end
-		hooksecurefunc("PlayerFrame_ToPlayerArt", DegiUIPlayerFrame)
-
-		--Target Frame
-
-		function DegiUITargetFrame (self, forceNormalTexture)
-			local classification = UnitClassification(self.unit);
-			self.highLevelTexture:SetPoint("CENTER", self.levelText, "CENTER", 0,0);
-			self.nameBackground:Hide();
-			self.name:SetPoint("LEFT", self, 15, 36);
-			self.healthbar:SetSize(119, 20);
-			self.healthbar:SetPoint("TOPLEFT", 5, -24);
-			self.manabar:SetPoint("TOPLEFT", 7, -45);
-			self.manabar:SetHeight(20);
-			self.manabar:SetSize(119, 20);
-			self.healthbar.LeftText:SetPoint("LEFT", self.healthbar, "LEFT", 8, 0);
-			self.healthbar.RightText:SetPoint("RIGHT", self.healthbar, "RIGHT", -5, 0);
-			self.healthbar.TextString:SetPoint("CENTER", self.healthbar, "CENTER", 0, 0);
-			self.manabar.LeftText:SetPoint("LEFT", self.manabar, "LEFT", 8, 0);
-			self.manabar.RightText:ClearAllPoints();
-			self.manabar.RightText:SetPoint("RIGHT", self.manabar, "RIGHT", -5, 0);
-			self.manabar.TextString:SetPoint("CENTER", self.manabar, "CENTER", 0, 0);
-			if ( forceNormalTexture ) then
-				self.haveElite = nil;
-				self.Background:SetSize(119,42);
-				self.Background:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 7, 35);
-			else
-				self.haveElite = true;
-				self.Background:SetSize(119,42);
-			end
-			self.healthbar.lockColor = true;
-		end
-		hooksecurefunc("TargetFrame_CheckClassification", DegiUITargetFrame)
-
-		--target color healyh bar My FIX
-		local TargetHPBarFrameUpdate = CreateFrame("Frame", "TargetHPBarFrameUpdate")
-		TargetHPBarFrameUpdate:RegisterUnitEvent("PLAYER_ENTERING_WORLD");
-		TargetHPBarFrameUpdate:RegisterUnitEvent("UNIT_ENTERED_VEHICLE");
-		TargetHPBarFrameUpdate:RegisterUnitEvent("UNIT_EXITED_VEHICLE");
-		TargetHPBarFrameUpdate:SetScript('OnUpdate', function(self)
-			local classcolor = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
-			local UnitReaction = UnitReaction("target", "player") or 9
-			-- print(classcolor, UnitReaction)
-
-			if UnitIsPlayer("target") then
-				TargetFrameHealthBar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b)
-			else
-				if UnitReaction <= 3 then TargetFrameHealthBar:SetStatusBarColor(1, 0, 0) end
-				if UnitReaction == 4 then TargetFrameHealthBar:SetStatusBarColor(1, 1, 0) end
-				if UnitReaction >= 5 then TargetFrameHealthBar:SetStatusBarColor(0, 1, 0) end
-			end
-		end)
-				
-
-		--Target of Target Frame Texture
-
-		TargetFrameToTTextureFrameTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetofTargetFrame");
-		TargetFrameToTHealthBar:SetHeight(8)
-		FocusFrameToTTextureFrameTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetofTargetFrame");
-		FocusFrameToTHealthBar:SetHeight(8)
-
-	else
-		hooksecurefunc('TargetFrame_CheckClassification', function(self, forceNormalTexture)
-			local classification = UnitClassification(self.unit);
-		    if ( classification == "worldboss" or classification == "elite" ) then
-			   self.borderTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\target\\elite")
-			   self.borderTexture:SetVertexColor(0.05,0.05,0.05)
-		    elseif ( classification == "rareelite" ) then
-			   self.borderTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\target\\rare-elite")
-			   self.borderTexture:SetVertexColor(0.05,0.05,0.05)
-		    elseif ( classification == "rare" ) then
-			   self.borderTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\target\\rare")
-			   self.borderTexture:SetVertexColor(0.05,0.05,0.05)
-		    else
-			   self.borderTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame")
-			   self.borderTexture:SetVertexColor(0.05,0.05,0.05)
-			end
- 	    end)
 	end
+	hooksecurefunc("PlayerFrame_ToPlayerArt", DegiUIPlayerFrame)
+
+	--Target Frame
+
+	function DegiUITargetFrame (self, forceNormalTexture)
+		local classification = UnitClassification(self.unit);
+		self.highLevelTexture:SetPoint("CENTER", self.levelText, "CENTER", 0,0);
+		self.nameBackground:Hide();
+		self.name:SetPoint("LEFT", self, 15, 36);
+		self.healthbar:SetSize(119, 20);
+		self.healthbar:SetPoint("TOPLEFT", 5, -24);
+		self.manabar:SetPoint("TOPLEFT", 7, -45);
+		self.manabar:SetHeight(20);
+		self.manabar:SetSize(119, 20);
+		self.healthbar.LeftText:SetPoint("LEFT", self.healthbar, "LEFT", 8, 0);
+		self.healthbar.RightText:SetPoint("RIGHT", self.healthbar, "RIGHT", -5, 0);
+		self.healthbar.TextString:SetPoint("CENTER", self.healthbar, "CENTER", 0, 0);
+		self.manabar.LeftText:SetPoint("LEFT", self.manabar, "LEFT", 8, 0);
+		self.manabar.RightText:ClearAllPoints();
+		self.manabar.RightText:SetPoint("RIGHT", self.manabar, "RIGHT", -5, 0);
+		self.manabar.TextString:SetPoint("CENTER", self.manabar, "CENTER", 0, 0);
+		if ( forceNormalTexture ) then
+			self.haveElite = nil;
+			self.Background:SetSize(119,42);
+			self.Background:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 7, 35);
+		else
+			self.haveElite = true;
+			self.Background:SetSize(119,42);
+		end
+		self.healthbar.lockColor = true;
+		TargetFrameTextureFramePVPIcon:Hide()
+	end
+	hooksecurefunc("TargetFrame_CheckClassification", DegiUITargetFrame)
+
+	--target color healyh bar My FIX
+	local TargetHPBarFrameUpdate = CreateFrame("Frame", "TargetHPBarFrameUpdate")
+	TargetHPBarFrameUpdate:RegisterUnitEvent("PLAYER_ENTERING_WORLD");
+	TargetHPBarFrameUpdate:RegisterUnitEvent("UNIT_ENTERED_VEHICLE");
+	TargetHPBarFrameUpdate:RegisterUnitEvent("UNIT_EXITED_VEHICLE");
+	TargetHPBarFrameUpdate:SetScript('OnUpdate', function(self)
+		local classcolor = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
+		local UnitReaction = UnitReaction("target", "player") or 9
+		if UnitIsPlayer("target") then
+			TargetFrameHealthBar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b)
+		else
+			if UnitReaction <= 3 then TargetFrameHealthBar:SetStatusBarColor(1, 0, 0) end
+			if UnitReaction == 4 then TargetFrameHealthBar:SetStatusBarColor(1, 1, 0) end
+			if UnitReaction >= 5 then TargetFrameHealthBar:SetStatusBarColor(0, 1, 0) end
+		end
+
+		PlayerPVPIcon:Hide()
+
+
+	end)
+			
+
+	--Target of Target Frame Texture
+
+	TargetFrameToTTextureFrameTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetofTargetFrame");
+	TargetFrameToTHealthBar:SetHeight(8)
+	FocusFrameToTTextureFrameTexture:SetTexture("Interface\\Addons\\DegiUI\\textures\\unitframes\\UI-TargetofTargetFrame");
+	FocusFrameToTHealthBar:SetHeight(8)
+
 end
 
 --Health and Mana Text Shadows
@@ -1094,58 +1080,54 @@ end
 --Player, Target, and Target Name Background Bar Textures
 
 function ApplyFlatBars()
-	
-    if DegiUIOptions.flatbars then
-        
-		FocusFrameNameBackground:SetTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
-		TargetFrameNameBackground:SetTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
-		PlayerFrame.healthbar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
-		TargetFrame.healthbar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
-		FocusFrame.healthbar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
-		--Party Frames Health Bar Textures
+	FocusFrameNameBackground:SetTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+	TargetFrameNameBackground:SetTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+	PlayerFrame.healthbar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
+	TargetFrame.healthbar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
+	FocusFrame.healthbar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
+	--Party Frames Health Bar Textures
 
-		for i=1, 4 do
-			_G["PartyMemberFrame"..i.."HealthBar"]:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
-		end
+	for i=1, 4 do
+		_G["PartyMemberFrame"..i.."HealthBar"]:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+	end
 
-		--Mirror Timers Textures (Breath meter, etc)
+	--Mirror Timers Textures (Breath meter, etc)
 
-		MirrorTimer1StatusBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
-		MirrorTimer2StatusBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
-		MirrorTimer3StatusBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+	MirrorTimer1StatusBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+	MirrorTimer2StatusBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+	MirrorTimer3StatusBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
 
-		--Castbar Bar Texture
+	--Castbar Bar Texture
 
-		CastingBarFrame:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+	CastingBarFrame:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
 
-		--Pet Frame Bar Textures
+	--Pet Frame Bar Textures
 
-		PetFrameHealthBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
-		TargetFrameToTHealthBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
-		FocusFrameToTHealthBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
+	PetFrameHealthBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
+	TargetFrameToTHealthBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
+	FocusFrameToTHealthBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
 
-		--Tooltip Health Bar Texture
+	--Tooltip Health Bar Texture
 
-		GameTooltipStatusBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+	GameTooltipStatusBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
 
-		--XP and Rep Bar Textures
+	--XP and Rep Bar Textures
 
-		ReputationWatchBar.StatusBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
-		MainMenuExpBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
+	ReputationWatchBar.StatusBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
+	MainMenuExpBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
 
-		--Mana Bar Texture
+	--Mana Bar Texture
 
-		function DegiUIManaTexture (manaBar)
-			local powerType, powerToken, altR, altG, altB = UnitPowerType(manaBar.unit);
-			local info = PowerBarColor[powerToken];
-			if ( info ) then
-				if ( not manaBar.lockColor ) then
-						manaBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
-				end
+	function DegiUIManaTexture (manaBar)
+		local powerType, powerToken, altR, altG, altB = UnitPowerType(manaBar.unit);
+		local info = PowerBarColor[powerToken];
+		if ( info ) then
+			if ( not manaBar.lockColor ) then
+					manaBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat");
 			end
 		end
-		hooksecurefunc("UnitFrameManaBar_UpdateType", DegiUIManaTexture)
 	end
+	hooksecurefunc("UnitFrameManaBar_UpdateType", DegiUIManaTexture)
 end
 
 --Castbar
@@ -1154,21 +1136,34 @@ function ApplyCastBar()
 	
     if DegiUIOptions.castbar then
 
+		--main castbarframe
 		CastingBarFrame:SetScale(1)
-		CastingBarFrame.Border:SetTexture("Interface\\CastingBar\\UI-CastingBar-Border-Small")
-		CastingBarFrame.Flash:SetTexture("Interface\\CastingBar\\UI-CastingBar-Flash-Small")
-		CastingBarFrame.Spark:SetHeight(50)
+		CastingBarFrame:SetSize(175,20)
+		CastingBarFrame.Border:Hide()
+		CastingBarFrame.Flash:SetTexture("Interface\\AddOns\\DegiUI\\textures\\CastingBar\\UI-CastingBar-Flash-Small")
+		CastingBarFrame.Spark:SetAlpha(0)
 		CastingBarFrame.Text:ClearAllPoints()
 		CastingBarFrame.Text:SetPoint("CENTER", 0, 1)
-		CastingBarFrame.Border:SetWidth(CastingBarFrame.Border:GetWidth() + 4)
-		CastingBarFrame.Flash:SetWidth(CastingBarFrame.Flash:GetWidth() + 4)
-		CastingBarFrame.BorderShield:SetWidth(CastingBarFrame.BorderShield:GetWidth() + 4)
-		CastingBarFrame.Border:SetPoint("TOP", 0, 26)
-		CastingBarFrame.Flash:SetPoint("TOP", 0, 26)
-		CastingBarFrame.BorderShield:SetPoint("TOP", 0, 26)
+		CastingBarFrame.Text:SetFont("Fonts\\FRIZQT__.ttf", 10, "OUTLINE")
+
+		--icon
+		CastingBarFrame.Icon:Show()
+		CastingBarFrame.Icon:SetHeight(20)
+		CastingBarFrame.Icon:SetWidth(20)
+
+		--casttime
+		CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
+		CastingBarFrame.timer:SetFont("Fonts\\FRIZQT__.ttf", 10, "OUTLINE")
+		CastingBarFrame.timer:SetPoint("RIGHT", CastingBarFrame, "RIGHT", 2, -16)
+		-- CastingBarFrame.timer:SetText("Test string")
 		
 	end
 end
+
+
+
+
+
 
 --Combo Points
 
@@ -1286,25 +1281,21 @@ end
 --Class Color Healthbars
 
 function ApplyClassBars()
-	
-    if DegiUIOptions.classbars then
-        
-		function Healthcolor(healthbar, unit)
-			if UnitIsPlayer(unit) and UnitIsConnected(unit) and UnitClass(unit) then
-				_, class = UnitClass(unit);
-				local c = RAID_CLASS_COLORS[class];
-				healthbar:SetStatusBarColor(c.r, c.g, c.b);
-			elseif UnitIsPlayer(unit) and (not UnitIsConnected(unit)) then
-				healthbar:SetStatusBarColor(0.5,0.5,0.5);
-			else
-				healthbar:SetStatusBarColor(0,0.9,0);
-			end
+	function Healthcolor(healthbar, unit)
+		if UnitIsPlayer(unit) and UnitIsConnected(unit) and UnitClass(unit) then
+			_, class = UnitClass(unit);
+			local c = RAID_CLASS_COLORS[class];
+			healthbar:SetStatusBarColor(c.r, c.g, c.b);
+		elseif UnitIsPlayer(unit) and (not UnitIsConnected(unit)) then
+			healthbar:SetStatusBarColor(0.5,0.5,0.5);
+		else
+			healthbar:SetStatusBarColor(0,0.9,0);
 		end
-		hooksecurefunc("UnitFrameHealthBar_Update", Healthcolor)
-		hooksecurefunc("HealthBar_OnValueChanged", function(self)
-			Healthcolor(self, self.unit)
-		end)
 	end
+	hooksecurefunc("UnitFrameHealthBar_Update", Healthcolor)
+	hooksecurefunc("HealthBar_OnValueChanged", function(self)
+		Healthcolor(self, self.unit)
+	end)
 end
 
 --Hiding Pet Bar Background

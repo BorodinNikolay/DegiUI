@@ -1,9 +1,4 @@
-﻿  -- // Dark Mode UI (Classic WoW Season of Mastery)
-  -- // Lorti - 2016
-  -- // Sinope - 2021
-  -- // Johnnieboi - 2021
-  
-  -----------------------------
+﻿  -----------------------------
   -- INIT
   -----------------------------
 
@@ -171,7 +166,7 @@
 
 --Config
 
-DegiUIOptions = {thickness, flatbars, classbars, castbar, classportraits, statstracker, partybuffs, stancebar, petbarbackground, petbarhotkey, barhotkey, leatrixquest, buffborder, format, percent, stringtype, numericaltype}
+DegiUIOptions = {--[[thickness, flatbars, classbars, ]] castbar, classportraits, statstracker, partybuffs, stancebar, petbarbackground, petbarhotkey, barhotkey, leatrixquest, buffborder, format, percent, stringtype, numericaltype}
 
 local f = CreateFrame("Frame")
 f:RegisterEvent("PLAYER_LOGIN")
@@ -179,20 +174,20 @@ f:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 
 function f:PLAYER_LOGIN()
 
-    if DegiUIOptions.thickness == nil then
-    	DegiUIOptions.thickness = false
-    end
+    -- if DegiUIOptions.thickness == nil then
+    -- 	DegiUIOptions.thickness = false
+    -- end
     
-	if DegiUIOptions.flatbars == nil then
-		DegiUIOptions.flatbars = false
-	end
+	-- if DegiUIOptions.flatbars == nil then
+	-- 	DegiUIOptions.flatbars = false
+	-- end
 
-	if DegiUIOptions.classbars == nil then
-		DegiUIOptions.classbars = false
-	end
+	-- if DegiUIOptions.classbars == nil then
+	-- 	DegiUIOptions.classbars = false
+	-- end
 
 	if DegiUIOptions.castbar == nil then
-		DegiUIOptions.castbar = false
+		DegiUIOptions.castbar = true
 	end
 
 	if DegiUIOptions.classportraits == nil then
@@ -277,47 +272,47 @@ end
 
 function f:CreateGUI()
     local Panel=CreateFrame("Frame")
-    Panel.name="Dark Mode UI";
+    Panel.name="DegiUI";
     InterfaceOptions_AddCategory(Panel);
 
     local title=Panel:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge");
     title:SetPoint("TOPLEFT",12,-15);
-    title:SetText("Dark Mode UI");
+    title:SetText("DegiUI");
     title:SetFont("Fonts\\FRIZQT__.TTF", 30, "THICKOUTLINE");
 
-    local ThickFramesButton = CreateFrame("CheckButton", "ThickFramesButton_Name", Panel, "ChatConfigCheckButtonTemplate")
-    ThickFramesButton:SetPoint("TOPLEFT", 10, -60)
-    ThickFramesButton_NameText:SetText("Thick Frames")
-	  ThickFramesButton_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    ThickFramesButton:SetChecked(DegiUIOptions.thickness)
-    ThickFramesButton:SetScript("OnClick", function(ThickFramesButton)
-        DegiUIOptions.thickness = ThickFramesButton:GetChecked()
-        ApplyThickness()
-    end)
+    -- local ThickFramesButton = CreateFrame("CheckButton", "ThickFramesButton_Name", Panel, "ChatConfigCheckButtonTemplate")
+    -- ThickFramesButton:SetPoint("TOPLEFT", 10, -60)
+    -- ThickFramesButton_NameText:SetText("Thick Frames")
+	  -- ThickFramesButton_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+    -- ThickFramesButton:SetChecked(DegiUIOptions.thickness)
+    -- ThickFramesButton:SetScript("OnClick", function(ThickFramesButton)
+    --     DegiUIOptions.thickness = ThickFramesButton:GetChecked()
+    --     ApplyThickness()
+    -- end)
 
-	local FlatBarsButton = CreateFrame("CheckButton", "FlatBarsButton_Name", Panel, "ChatConfigCheckButtonTemplate")
-    FlatBarsButton:SetPoint("TOPLEFT", 10, -90)
-    FlatBarsButton_NameText:SetText("Flat Bar Textures")
-	  FlatBarsButton_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    FlatBarsButton:SetChecked(DegiUIOptions.flatbars)
-    FlatBarsButton:SetScript("OnClick", function(FlatBarsButton)
-        DegiUIOptions.flatbars = FlatBarsButton:GetChecked()
-        ApplyFlatBars()
-    end)
+	-- local FlatBarsButton = CreateFrame("CheckButton", "FlatBarsButton_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   FlatBarsButton:SetPoint("TOPLEFT", 10, -90)
+  --   FlatBarsButton_NameText:SetText("Flat Bar Textures")
+	--   FlatBarsButton_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   FlatBarsButton:SetChecked(DegiUIOptions.flatbars)
+  --   FlatBarsButton:SetScript("OnClick", function(FlatBarsButton)
+  --       DegiUIOptions.flatbars = FlatBarsButton:GetChecked()
+  --       ApplyFlatBars()
+  --   end)
 
-	local ClassBarsButton = CreateFrame("CheckButton", "ClassBarsButton_Name", Panel, "ChatConfigCheckButtonTemplate")
-    ClassBarsButton:SetPoint("TOPLEFT", 10, -120)
-    ClassBarsButton_NameText:SetText("Class Health Bars")
-	  ClassBarsButton_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    ClassBarsButton:SetChecked(DegiUIOptions.classbars)
-    ClassBarsButton:SetScript("OnClick", function(ClassBarsButton)
-        DegiUIOptions.classbars = ClassBarsButton:GetChecked()
-        ApplyClassBars()
-    end)
+	-- local ClassBarsButton = CreateFrame("CheckButton", "ClassBarsButton_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   ClassBarsButton:SetPoint("TOPLEFT", 10, -120)
+  --   ClassBarsButton_NameText:SetText("Class Health Bars")
+	--   ClassBarsButton_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   ClassBarsButton:SetChecked(DegiUIOptions.classbars)
+  --   ClassBarsButton:SetScript("OnClick", function(ClassBarsButton)
+  --       DegiUIOptions.classbars = ClassBarsButton:GetChecked()
+  --       ApplyClassBars()
+  --   end)
 
 	local CastBarButton = CreateFrame("CheckButton", "CastBarButton_Name", Panel, "ChatConfigCheckButtonTemplate")
     CastBarButton:SetPoint("TOPLEFT", 10, -150)
-    CastBarButton_NameText:SetText("Smooth Corners Cast Bar")
+    CastBarButton_NameText:SetText("Castbar")
 	  CastBarButton_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
     CastBarButton:SetChecked(DegiUIOptions.castbar)
     CastBarButton:SetScript("OnClick", function(CastBarButton)
@@ -482,20 +477,20 @@ function f:CreateGUI()
 		end
         ApplyFonts()
 
-	local note=Panel:CreateFontString(nil, "OVERLAY", "GameFontNormal");
-    note:SetPoint("TOPLEFT",10, -360);
-    note:SetText("Note: Reload after changing any of these by typing /reload into your chat");
-    note:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+	-- local note=Panel:CreateFontString(nil, "OVERLAY", "GameFontNormal");
+  --   note:SetPoint("TOPLEFT",10, -360);
+  --   note:SetText("Note: Reload after changing any of these by typing /reload into your chat");
+  --   note:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
 
-	local note=Panel:CreateFontString(nil, "OVERLAY", "GameFontNormal");
-    note:SetPoint("TOPLEFT",10, -380);
-    note:SetText("The tracker showing your fps and latency can be moved by alt+click and dragging");
-    note:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+	-- local note=Panel:CreateFontString(nil, "OVERLAY", "GameFontNormal");
+  --   note:SetPoint("TOPLEFT",10, -380);
+  --   note:SetText("The tracker showing your fps and latency can be moved by alt+click and dragging");
+  --   note:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
 
-	local recommended=Panel:CreateFontString(nil, "OVERLAY", "GameFontNormal");
-    recommended:SetPoint("TOP",10, -420);
-    recommended:SetText("Recommended Addons:\n\nKuiNameplates or any nameplate addon to darken nameplates\n\nLeatrix Plus to hide chat buttons, bigger questlog, and much more\n\nBartender4 and Dominos Action Bars are supported\n\nTo get my fonts, check the Curseforge page description for instructions");
-    recommended:SetFont("Fonts\\FRIZQT__.TTF", 13, "OUTLINE");
+	-- local recommended=Panel:CreateFontString(nil, "OVERLAY", "GameFontNormal");
+  --   recommended:SetPoint("TOP",10, -420);
+  --   recommended:SetText("Recommended Addons:\n\nKuiNameplates or any nameplate addon to darken nameplates\n\nLeatrix Plus to hide chat buttons, bigger questlog, and much more\n\nBartender4 and Dominos Action Bars are supported\n\nTo get my fonts, check the Curseforge page description for instructions");
+  --   recommended:SetFont("Fonts\\FRIZQT__.TTF", 13, "OUTLINE");
 
 	local name = "StringSizeSlider"
         local template = "OptionsSliderTemplate"
