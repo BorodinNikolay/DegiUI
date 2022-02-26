@@ -27,7 +27,7 @@ local errormessage_blocks = {
 	'Вы пока не можете этого сделать',
 
 	'Ability is not ready yet',
- 	'Another action is in progress',
+	'Another action is in progress',
 	'Can\'t attack while mounted',
 	'Can\'t do that while moving',
 	'Item is not ready yet',
@@ -68,6 +68,26 @@ event_frame:RegisterEvent('PLAYER_LOGIN')
 local CF=CreateFrame("Frame")
 CF:RegisterEvent("PLAYER_ENTERING_WORLD")
 CF:RegisterEvent("GROUP_ROSTER_UPDATE")
+
+
+
+-- Скрыть драконов
+function ApplyDragonHide()
+	if DegiUIOptions.DragonHide then
+		MainMenuBarLeftEndCap:Hide()
+		MainMenuBarRightEndCap:Hide()
+	end
+end
+
+
+
+
+
+
+
+
+
+
 
 --Thick Target Frames
 
@@ -164,27 +184,6 @@ function ApplyThickness()
 	end
 	hooksecurefunc("TargetFrame_CheckClassification", DegiUITargetFrame)
 
-	--target color healyh bar My FIX
-	local TargetHPBarFrameUpdate = CreateFrame("Frame", "TargetHPBarFrameUpdate")
-	TargetHPBarFrameUpdate:RegisterUnitEvent("PLAYER_ENTERING_WORLD");
-	TargetHPBarFrameUpdate:RegisterUnitEvent("UNIT_ENTERED_VEHICLE");
-	TargetHPBarFrameUpdate:RegisterUnitEvent("UNIT_EXITED_VEHICLE");
-	TargetHPBarFrameUpdate:SetScript('OnUpdate', function(self)
-		local classcolor = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
-		local UnitReaction = UnitReaction("target", "player") or 9
-		if UnitIsPlayer("target") then
-			TargetFrameHealthBar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b)
-		else
-			if UnitReaction <= 3 then TargetFrameHealthBar:SetStatusBarColor(1, 0, 0) end
-			if UnitReaction == 4 then TargetFrameHealthBar:SetStatusBarColor(1, 1, 0) end
-			if UnitReaction >= 5 then TargetFrameHealthBar:SetStatusBarColor(0, 1, 0) end
-		end
-
-		PlayerPVPIcon:Hide()
-
-
-	end)
-			
 
 	--Target of Target Frame Texture
 
@@ -1100,6 +1099,8 @@ function ApplyFlatBars()
 	--Castbar Bar Texture
 
 	CastingBarFrame:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+	TargetFrameSpellBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+	FocusFrameSpellBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
 
 	--Pet Frame Bar Textures
 
@@ -1136,26 +1137,62 @@ function ApplyCastBar()
 	
     if DegiUIOptions.castbar then
 
+			--PLAYER
 		--main castbarframe
-		CastingBarFrame:SetScale(1)
+		-- CastingBarFrame:SetScale(1)
 		CastingBarFrame:SetSize(175,20)
 		CastingBarFrame.Border:Hide()
-		CastingBarFrame.Flash:SetTexture("Interface\\AddOns\\DegiUI\\textures\\CastingBar\\UI-CastingBar-Flash-Small")
 		CastingBarFrame.Spark:SetAlpha(0)
+		CastingBarFrame.Flash:SetTexture("Interface\\AddOns\\DegiUI\\textures\\CastingBar\\UI-CastingBar-Flash-Small")
 		CastingBarFrame.Text:ClearAllPoints()
-		CastingBarFrame.Text:SetPoint("CENTER", 0, 1)
+		CastingBarFrame.Text:SetPoint("CENTER", 0, 0)
 		CastingBarFrame.Text:SetFont("Fonts\\FRIZQT__.ttf", 10, "OUTLINE")
-
 		--icon
 		CastingBarFrame.Icon:Show()
 		CastingBarFrame.Icon:SetHeight(20)
 		CastingBarFrame.Icon:SetWidth(20)
-
 		--casttime
 		CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
 		CastingBarFrame.timer:SetFont("Fonts\\FRIZQT__.ttf", 10, "OUTLINE")
 		CastingBarFrame.timer:SetPoint("RIGHT", CastingBarFrame, "RIGHT", 2, -16)
-		-- CastingBarFrame.timer:SetText("Test string")
+
+			--TARGET
+		-- TargetFrameSpellBar:SetScale(1)
+		TargetFrameSpellBar:SetSize(175,20)
+		TargetFrameSpellBar.Border:Hide()
+		TargetFrameSpellBar.Spark:SetAlpha(0)
+		TargetFrameSpellBar.Flash:SetTexture("Interface\\AddOns\\DegiUI\\textures\\CastingBar\\UI-CastingBar-Flash-Small")
+
+		TargetFrameSpellBar.Text:ClearAllPoints()
+		TargetFrameSpellBar.Text:SetPoint("CENTER", 0, 0)
+		TargetFrameSpellBar.Text:SetFont("Fonts\\FRIZQT__.ttf", 10, "OUTLINE")
+
+		TargetFrameSpellBar.Icon:Show()
+		TargetFrameSpellBar.Icon:SetHeight(20)
+		TargetFrameSpellBar.Icon:SetWidth(20)
+
+		hooksecurefunc(TargetFrameSpellBar, "Show", function()
+			TargetFrameSpellBar:ClearAllPoints()
+			TargetFrameSpellBar:SetPoint("CENTER", UIParent, "CENTER", 0, -100)
+			TargetFrameSpellBar.SetPoint = function() end
+		end)
+
+			--FOCUS
+		FocusFrameSpellBar:SetSize(150,20)
+		FocusFrameSpellBar.Border:Hide()
+		FocusFrameSpellBar.Spark:SetAlpha(0)
+		FocusFrameSpellBar.Flash:SetTexture("Interface\\AddOns\\DegiUI\\textures\\CastingBar\\UI-CastingBar-Flash-Small")
+
+		FocusFrameSpellBar.Text:ClearAllPoints()
+		FocusFrameSpellBar.Text:SetPoint("CENTER", 0, 0)
+		FocusFrameSpellBar.Text:SetFont("Fonts\\FRIZQT__.ttf", 10, "OUTLINE")
+
+		FocusFrameSpellBar.Icon:Show()
+		FocusFrameSpellBar.Icon:SetHeight(20)
+		FocusFrameSpellBar.Icon:SetWidth(20)
+
+
+
 		
 	end
 end
@@ -1389,7 +1426,7 @@ local function RaidFrameUpdate()
 		name:SetPoint('TOPLEFT', bar, 2, -2)
     end
     i = i + 1
-  until not bar
+until not bar
 end
 
 	if CompactRaidFrameContainer_AddUnitFrame then
@@ -1472,3 +1509,51 @@ end
 end)
 f:RegisterEvent("PLAYER_LOGIN")
 f:RegisterEvent("ADDON_LOADED")
+
+
+
+
+
+
+
+
+
+
+
+
+
+--While True cycle
+
+	--target color healyh bar My FIX
+	local WhileTrue = CreateFrame("Frame", "TargetHPBarFrameUpdate")
+	WhileTrue:RegisterUnitEvent("PLAYER_ENTERING_WORLD");
+	WhileTrue:RegisterUnitEvent("UNIT_ENTERED_VEHICLE");
+	WhileTrue:RegisterUnitEvent("UNIT_EXITED_VEHICLE");
+	WhileTrue:SetScript('OnUpdate', function(self)
+
+		--Target HP color
+		local classcolor = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
+		local UnitReaction = UnitReaction("target", "player") or 9
+		if UnitIsPlayer("target") then
+			TargetFrameHealthBar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b)
+		else
+			if UnitReaction <= 3 then TargetFrameHealthBar:SetStatusBarColor(1, 0, 0) end
+			if UnitReaction == 4 then TargetFrameHealthBar:SetStatusBarColor(1, 1, 0) end
+			if UnitReaction >= 5 then TargetFrameHealthBar:SetStatusBarColor(0, 1, 0) end
+		end
+
+		--Hide player PVP icon
+		PlayerPVPIcon:Hide()
+
+		if DegiUIOptions.castbar then
+			--Castbar player timer
+			if CastingBarFrame.casting and CastingBarFrame.timer then
+				CastingBarFrame.timer:SetText(format("%.1f", max(CastingBarFrame.maxValue - CastingBarFrame.value, 0)) .. " / " .. format("%.1f", max(CastingBarFrame.maxValue, 0)))
+			elseif CastingBarFrame.channeling then
+				CastingBarFrame.timer:SetText(format("%.1f", max(CastingBarFrame.value, 0)))
+			else
+				CastingBarFrame.timer:SetText("")
+			end
+		end
+
+	end)

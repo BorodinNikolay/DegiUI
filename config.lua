@@ -166,7 +166,24 @@
 
 --Config
 
-DegiUIOptions = {--[[thickness, flatbars, classbars, ]] castbar, classportraits, statstracker, partybuffs, stancebar, petbarbackground, petbarhotkey, barhotkey, leatrixquest, buffborder, format, percent, stringtype, numericaltype}
+DegiUIOptions = {
+DragonHide,
+--[[flatbars,
+  classbars,
+]] castbar,
+classportraits,
+statstracker,
+partybuffs,
+stancebar,
+petbarbackground,
+petbarhotkey,
+barhotkey,
+leatrixquest,
+buffborder,
+format,
+percent,
+stringtype,
+numericaltype}
 
 local f = CreateFrame("Frame")
 f:RegisterEvent("PLAYER_LOGIN")
@@ -174,9 +191,9 @@ f:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 
 function f:PLAYER_LOGIN()
 
-    -- if DegiUIOptions.thickness == nil then
-    -- 	DegiUIOptions.thickness = false
-    -- end
+    if DegiUIOptions.DragonHide == nil then
+    	DegiUIOptions.DragonHide = true
+    end
     
 	-- if DegiUIOptions.flatbars == nil then
 	-- 	DegiUIOptions.flatbars = false
@@ -253,6 +270,7 @@ function f:PLAYER_LOGIN()
     f.optionsPanel = f:CreateGUI()
     
   ApplyThickness()
+  ApplyDragonHide()
 	ApplyFlatBars()
 	ApplyClassBars()
 	ApplyCastBar()
@@ -280,15 +298,15 @@ function f:CreateGUI()
     title:SetText("DegiUI");
     title:SetFont("Fonts\\FRIZQT__.TTF", 30, "THICKOUTLINE");
 
-    -- local ThickFramesButton = CreateFrame("CheckButton", "ThickFramesButton_Name", Panel, "ChatConfigCheckButtonTemplate")
-    -- ThickFramesButton:SetPoint("TOPLEFT", 10, -60)
-    -- ThickFramesButton_NameText:SetText("Thick Frames")
-	  -- ThickFramesButton_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    -- ThickFramesButton:SetChecked(DegiUIOptions.thickness)
-    -- ThickFramesButton:SetScript("OnClick", function(ThickFramesButton)
-    --     DegiUIOptions.thickness = ThickFramesButton:GetChecked()
-    --     ApplyThickness()
-    -- end)
+    local DragonHideButton = CreateFrame("CheckButton", "DragonHideButton_Name", Panel, "ChatConfigCheckButtonTemplate")
+    DragonHideButton:SetPoint("TOPLEFT", 10, -60)
+    DragonHideButton_NameText:SetText("Скрыть грифонов")
+	  DragonHideButton_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+    DragonHideButton:SetChecked(DegiUIOptions.DragonHide)
+    DragonHideButton:SetScript("OnClick", function(DragonHideButton)
+        DegiUIOptions.DragonHide = DragonHideButton:GetChecked()
+        ApplyDragonHide()
+    end)
 
 	-- local FlatBarsButton = CreateFrame("CheckButton", "FlatBarsButton_Name", Panel, "ChatConfigCheckButtonTemplate")
   --   FlatBarsButton:SetPoint("TOPLEFT", 10, -90)
