@@ -119,11 +119,19 @@ SkillDetailStatusBarBar:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDo
 -- SkillDetailStatusBarBorder:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-Character-Skills-BarBorder")
 
 
-for i = 1, 12, 1 do
+for i = 1, 15, 1 do
 	_G["ReputationBar"..i]:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
 	-- _G["SkillRankFrame"..i.."BorderNormal"]:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-Character-Skills-BarBorder")
 	-- _G["SkillRankFrame"..i.."BorderHighlight"]:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-Character-Skills-BarBorderHighlight")
 end
+
+-- for i = 1, 3 do
+-- 	for j = 1, 5 do
+-- 		_G["CompactRaidGroup"..i.."Member"..j.."HealthBar"]:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+-- 	end
+
+-- end
+-- _G["CompactRaidGroup".."1".."Member".."1".."HealthBar"]:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
 
 SetCVar("ShowClassColorInFriendlyNameplate", 1)
 SetCVar("ShowClassColorInNameplate", 1)
@@ -136,7 +144,7 @@ function ddump(arg)
 	end
 	
 end
-
+--/dump CompactRaidGroup1Member1HealthBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
 
 
 --Thick Target Frames
