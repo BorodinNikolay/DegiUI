@@ -125,6 +125,9 @@ for i = 1, 12, 1 do
 	-- _G["SkillRankFrame"..i.."BorderHighlight"]:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-Character-Skills-BarBorderHighlight")
 end
 
+SetCVar("ShowClassColorInFriendlyNameplate", 1)
+SetCVar("ShowClassColorInNameplate", 1)
+
 
 
 function ddump(arg)
@@ -1572,7 +1575,7 @@ f:RegisterEvent("ADDON_LOADED")
 --While True cycle
 
 	--target color healyh bar My FIX
-	local WhileTrue = CreateFrame("Frame", "TargetHPBarFrameUpdate")
+	local WhileTrue = CreateFrame("Frame")
 	WhileTrue:RegisterUnitEvent("PLAYER_ENTERING_WORLD");
 	WhileTrue:RegisterUnitEvent("UNIT_ENTERED_VEHICLE");
 	WhileTrue:RegisterUnitEvent("UNIT_EXITED_VEHICLE");
@@ -1602,5 +1605,21 @@ f:RegisterEvent("ADDON_LOADED")
 				CastingBarFrame.timer:SetText("")
 			end
 		end
+
+		--Nameplates
+		-- for i = 1, 40 do
+		-- 	if UnitExists('nameplate' .. i) then
+		-- 	-- 	print(_G["NamePlate"..i].UnitFrame.healthBar)
+		-- 	_G["NamePlate"..i].UnitFrame.healthBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+		-- 	_G["NamePlate"..i].UnitFrame.CastBar:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+		-- 	-- _G["NamePlate"..i].UnitFramehpBorder:SetTexture("Interface\\Addons\\DegiUI\\textures\\Tooltips\\Nameplate-Border")
+		-- 	-- _G["NamePlate"..i]:SetTexture("Interface\\Addons\\DegiUI\\textures\\Tooltips\\Nameplate-Border")
+		-- 	end
+		-- end
+
+
+		MultiBarRight:SetScale(0.5)
+		MultiBarLeft:SetScale(0.5)
+
 
 	end)
