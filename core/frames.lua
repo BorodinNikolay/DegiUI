@@ -83,9 +83,56 @@ end
 
 
 
+MainMenuXPBarTexture0:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-MAINMENUBAR-DWARF")
+MainMenuXPBarTexture1:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-MAINMENUBAR-DWARF")
+MainMenuXPBarTexture2:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-MAINMENUBAR-DWARF")
+MainMenuXPBarTexture3:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-MAINMENUBAR-DWARF")
+
+
+MainMenuBarTexture0:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-MAINMENUBAR-DWARF")
+MainMenuBarTexture1:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-MAINMENUBAR-DWARF")
+MainMenuBarTexture2:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-MainMenuBar-KeyRing")
+MainMenuBarTexture3:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-MainMenuBar-KeyRing")
+
+ReputationWatchBar.StatusBar.WatchBarTexture0:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-ReputationWatchBar")
+ReputationWatchBar.StatusBar.WatchBarTexture1:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-ReputationWatchBar")
+ReputationWatchBar.StatusBar.WatchBarTexture2:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-ReputationWatchBar")
+ReputationWatchBar.StatusBar.WatchBarTexture3:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-ReputationWatchBar")
+
+ReputationWatchBar.StatusBar.XPBarTexture0:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-MAINMENUBAR-DWARF")
+ReputationWatchBar.StatusBar.XPBarTexture1:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-MAINMENUBAR-DWARF")
+ReputationWatchBar.StatusBar.XPBarTexture2:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-MAINMENUBAR-DWARF")
+ReputationWatchBar.StatusBar.XPBarTexture3:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-MAINMENUBAR-DWARF")
+
+ExhaustionTickNormal:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-ExhaustionTickNormal.blp")
+ExhaustionTickHighlight:SetTexture("Interface\\Addons\\DegiUI\\textures\\MainMenuBar\\UI-ExhaustionTickHighlight.blp")
 
 
 
+for i = 1, 12, 1 do
+	_G["SkillRankFrame"..i.."Bar"]:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-Character-Skills-Bar")
+	-- _G["SkillRankFrame"..i.."BorderNormal"]:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-Character-Skills-BarBorder")
+	-- _G["SkillRankFrame"..i.."BorderHighlight"]:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-Character-Skills-BarBorderHighlight")
+end
+
+SkillDetailStatusBarBar:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-Character-Skills-Bar")
+-- SkillDetailStatusBarBorder:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-Character-Skills-BarBorder")
+
+
+for i = 1, 12, 1 do
+	_G["ReputationBar"..i]:SetStatusBarTexture("Interface\\AddOns\\DegiUI\\textures\\flat")
+	-- _G["SkillRankFrame"..i.."BorderNormal"]:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-Character-Skills-BarBorder")
+	-- _G["SkillRankFrame"..i.."BorderHighlight"]:SetTexture("Interface\\Addons\\DegiUI\\textures\\PaperDollInfoFrame\\UI-Character-Skills-BarBorderHighlight")
+end
+
+
+
+function ddump(arg)
+	for key, value in pairs(getmetatable(arg).__index) do
+		print(key)
+	end
+	
+end
 
 
 
