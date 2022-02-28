@@ -1,4 +1,9 @@
-UIParent:SetScale(0.75)
+local ScaleFrame = CreateFrame("Frame", nil, UIParent)
+ScaleFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+ScaleFrame:SetScript("OnEvent", function(self, event)
+    UIParent:SetScale(0.75)  -- change the size and reload your ui (/reloadui) or restart the game
+    ScaleFrame:UnregisterAllEvents()
+end)
 
 --get the addon namespace
 local addon, ns = ...
