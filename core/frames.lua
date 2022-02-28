@@ -1,3 +1,5 @@
+UIParent:SetScale(0.75)
+
 --get the addon namespace
 local addon, ns = ...
 --get the config values
