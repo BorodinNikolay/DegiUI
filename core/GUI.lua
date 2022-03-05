@@ -68,6 +68,7 @@ GUI = {
 
         --script
         button:SetScript("OnClick", function(self)
+            print("dgdsgdgsdfg")
             if(type(func) == "function") then
                 func()
             end
