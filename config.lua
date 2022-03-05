@@ -167,23 +167,23 @@
 --Config
 
 DegiUIOptions = {
-DragonHide,
---[[flatbars,
-  classbars,
-]] castbar,
-classportraits,
-statstracker,
-partybuffs,
-stancebar,
-petbarbackground,
-petbarhotkey,
-barhotkey,
-leatrixquest,
-buffborder,
-format,
-percent,
-stringtype,
-numericaltype}
+  --[[DragonHide,
+  flatbars,
+    classbars,
+  castbar,
+  classportraits,
+  statstracker,
+  partybuffs,
+  stancebar,
+  petbarbackground,
+  petbarhotkey,
+  barhotkey,
+  leatrixquest,
+  buffborder,
+  format,
+  percent,
+  stringtype,
+  numericaltype]]}
 
 local f = CreateFrame("Frame")
 f:RegisterEvent("PLAYER_LOGIN")
@@ -191,9 +191,10 @@ f:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 
 function f:PLAYER_LOGIN()
 
-    if DegiUIOptions.DragonHide == nil then
-    	DegiUIOptions.DragonHide = true
-    end
+
+    -- if DegiUIOptions.DragonHide == nil then
+    -- 	DegiUIOptions.DragonHide = true
+    -- end
     
 	-- if DegiUIOptions.flatbars == nil then
 	-- 	DegiUIOptions.flatbars = false
@@ -203,89 +204,90 @@ function f:PLAYER_LOGIN()
 	-- 	DegiUIOptions.classbars = false
 	-- end
 
-	if DegiUIOptions.castbar == nil then
-		DegiUIOptions.castbar = true
-	end
+	-- if DegiUIOptions.castbar == nil then
+	-- 	DegiUIOptions.castbar = true
+	-- end
 
-	if DegiUIOptions.classportraits == nil then
-		DegiUIOptions.classportraits = false
-	end
+	-- if DegiUIOptions.classportraits == nil then
+	-- 	DegiUIOptions.classportraits = false
+	-- end
 
-	if DegiUIOptions.statstracker == nil then
-		DegiUIOptions.statstracker = false
-	end
+	-- if DegiUIOptions.statstracker == nil then
+	-- 	DegiUIOptions.statstracker = false
+	-- end
 
-	if DegiUIOptions.partybuffs == nil then
-		DegiUIOptions.partybuffs = false
-	end
+	-- if DegiUIOptions.partybuffs == nil then
+	-- 	DegiUIOptions.partybuffs = false
+	-- end
 
-  if DegiUIOptions.buffborder == nil then
-		DegiUIOptions.buffborder = true
-	end
+  -- if DegiUIOptions.buffborder == nil then
+	-- 	DegiUIOptions.buffborder = true
+	-- end
 
-	if DegiUIOptions.format == nil then
-		DegiUIOptions.format = false
-	end
+	-- if DegiUIOptions.format == nil then
+	-- 	DegiUIOptions.format = false
+	-- end
 
-  if DegiUIOptions.percent == nil then
-		DegiUIOptions.percent = false
-	end
+  -- if DegiUIOptions.percent == nil then
+	-- 	DegiUIOptions.percent = false
+	-- end
 
-	if DegiUIOptions.stancebar == nil then
-		DegiUIOptions.stancebar = false
-	end
+	-- if DegiUIOptions.stancebar == nil then
+	-- 	DegiUIOptions.stancebar = false
+	-- end
 
-	if DegiUIOptions.petbarbackground == nil then
-		DegiUIOptions.petbarbackground = false
-	end
+	-- if DegiUIOptions.petbarbackground == nil then
+	-- 	DegiUIOptions.petbarbackground = false
+	-- end
 
-	if DegiUIOptions.petbarhotkey == nil then
-		DegiUIOptions.petbarhotkey = false
-	end
+	-- if DegiUIOptions.petbarhotkey == nil then
+	-- 	DegiUIOptions.petbarhotkey = false
+	-- end
 
-	if DegiUIOptions.barhotkey == nil then
-		DegiUIOptions.barhotkey = false
-	end
+	-- if DegiUIOptions.barhotkey == nil then
+	-- 	DegiUIOptions.barhotkey = false
+	-- end
 
-	if DegiUIOptions.leatrixquest == nil then
-		DegiUIOptions.leatrixquest = false
-	end
+	-- if DegiUIOptions.leatrixquest == nil then
+	-- 	DegiUIOptions.leatrixquest = false
+	-- end
 
-	if DegiUI_StringSize == nil then
-		DegiUI_StringSize = 12
-	end
+	-- if DegiUI_StringSize == nil then
+	-- 	DegiUI_StringSize = 12
+	-- end
 
-	if DegiUIOptions.stringtype == nil then
-		DegiUIOptions.stringtype = true
-	end
+	-- if DegiUIOptions.stringtype == nil then
+	-- 	DegiUIOptions.stringtype = true
+	-- end
 	
-	if DegiUI_NumSize == nil then
-		DegiUI_NumSize = 12
-	end
+	-- if DegiUI_NumSize == nil then
+	-- 	DegiUI_NumSize = 12
+	-- end
 
-	if DegiUIOptions.numericaltype == nil then
-		DegiUIOptions.numericaltype = true
-	end
+	-- if DegiUIOptions.numericaltype == nil then
+	-- 	DegiUIOptions.numericaltype = true
+	-- end
 
     f.optionsPanel = f:CreateGUI()
     
-  ApplyThickness()
-  ApplyDragonHide()
-	ApplyFlatBars()
-	ApplyClassBars()
-	ApplyCastBar()
-	ApplyClassPortraits()
-	ApplyStatsTracker()
-	ApplyPartyBuffs()
-	ApplyStanceBar()
-	ApplyPetBarBackground()
-	ApplyPetBarHotkey()
-	ApplyBarHotkey()
-	ApplyFonts()
-  ApplyFormat()
-	if IsAddOnLoaded("Leatrix_Plus") then
-		ApplyLeatrixQuest()
-	end
+  -- ApplyThickness()
+  -- ApplyDragonHide()
+	-- ApplyFlatBars()
+	-- ApplyClassBars()
+	-- ApplyCastBar()
+	-- ApplyClassPortraits()
+	-- ApplyStatsTracker()
+	-- ApplyPartyBuffs()
+	-- ApplyStanceBar()
+	-- ApplyPetBarBackground()
+	-- ApplyPetBarHotkey()
+	-- ApplyBarHotkey()
+	-- ApplyFonts()
+  -- ApplyFormat()
+
+-- 	if IsAddOnLoaded("Leatrix_Plus") then
+-- 		ApplyLeatrixQuest()
+-- 	end
 end
 
 function f:CreateGUI()
@@ -305,7 +307,7 @@ function f:CreateGUI()
     DragonHideButton:SetChecked(DegiUIOptions.DragonHide)
     DragonHideButton:SetScript("OnClick", function(DragonHideButton)
         DegiUIOptions.DragonHide = DragonHideButton:GetChecked()
-        ApplyDragonHide()
+        -- ApplyDragonHide()
     end)
 
 	-- local FlatBarsButton = CreateFrame("CheckButton", "FlatBarsButton_Name", Panel, "ChatConfigCheckButtonTemplate")
@@ -328,172 +330,172 @@ function f:CreateGUI()
   --       ApplyClassBars()
   --   end)
 
-	local CastBarButton = CreateFrame("CheckButton", "CastBarButton_Name", Panel, "ChatConfigCheckButtonTemplate")
-    CastBarButton:SetPoint("TOPLEFT", 10, -150)
-    CastBarButton_NameText:SetText("Castbar")
-	  CastBarButton_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    CastBarButton:SetChecked(DegiUIOptions.castbar)
-    CastBarButton:SetScript("OnClick", function(CastBarButton)
-        DegiUIOptions.castbar = CastBarButton:GetChecked()
-        ApplyCastBar()
-    end)
+	-- local CastBarButton = CreateFrame("CheckButton", "CastBarButton_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   CastBarButton:SetPoint("TOPLEFT", 10, -150)
+  --   CastBarButton_NameText:SetText("Castbar")
+	--   CastBarButton_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   CastBarButton:SetChecked(DegiUIOptions.castbar)
+  --   CastBarButton:SetScript("OnClick", function(CastBarButton)
+  --       DegiUIOptions.castbar = CastBarButton:GetChecked()
+  --       ApplyCastBar()
+  --   end)
 
-	local ClassPortraits = CreateFrame("CheckButton", "ClassPortraits_Name", Panel, "ChatConfigCheckButtonTemplate")
-    ClassPortraits:SetPoint("TOPLEFT", 10, -180)
-    ClassPortraits_NameText:SetText("Class Portraits")
-  	ClassPortraits_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    ClassPortraits:SetChecked(DegiUIOptions.classportraits)
-    ClassPortraits:SetScript("OnClick", function(ClassPortraits)
-        DegiUIOptions.classportraits = ClassPortraits:GetChecked()
-        ApplyClassPortraits()
-    end)
+	-- local ClassPortraits = CreateFrame("CheckButton", "ClassPortraits_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   ClassPortraits:SetPoint("TOPLEFT", 10, -180)
+  --   ClassPortraits_NameText:SetText("Class Portraits")
+  -- 	ClassPortraits_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   ClassPortraits:SetChecked(DegiUIOptions.classportraits)
+  --   ClassPortraits:SetScript("OnClick", function(ClassPortraits)
+  --       DegiUIOptions.classportraits = ClassPortraits:GetChecked()
+  --       ApplyClassPortraits()
+  --   end)
 
-	local StatsTracker = CreateFrame("CheckButton", "StatsTracker_Name", Panel, "ChatConfigCheckButtonTemplate")
-    StatsTracker:SetPoint("TOPLEFT", 10, -210)
-    StatsTracker_NameText:SetText("System Stats Tracker (fps/ms)")
-	  StatsTracker_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    StatsTracker:SetChecked(DegiUIOptions.statstracker)
-    StatsTracker:SetScript("OnClick", function(StatsTracker)
-        DegiUIOptions.statstracker = StatsTracker:GetChecked()
-        ApplyStatsTracker()
-    end)
+	-- local StatsTracker = CreateFrame("CheckButton", "StatsTracker_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   StatsTracker:SetPoint("TOPLEFT", 10, -210)
+  --   StatsTracker_NameText:SetText("System Stats Tracker (fps/ms)")
+	--   StatsTracker_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   StatsTracker:SetChecked(DegiUIOptions.statstracker)
+  --   StatsTracker:SetScript("OnClick", function(StatsTracker)
+  --       DegiUIOptions.statstracker = StatsTracker:GetChecked()
+  --       ApplyStatsTracker()
+  --   end)
 
-	local PartyBuffs = CreateFrame("CheckButton", "PartyBuffs_Name", Panel, "ChatConfigCheckButtonTemplate")
-    PartyBuffs:SetPoint("TOPLEFT", 10, -240)
-    PartyBuffs_NameText:SetText("Show Party Frame Buffs")
-	  PartyBuffs_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    PartyBuffs:SetChecked(DegiUIOptions.partybuffs)
-    PartyBuffs:SetScript("OnClick", function(PartyBuffs)
-        DegiUIOptions.partybuffs = PartyBuffs:GetChecked()
-        ApplyPartyBuffs()
-    end)
+	-- local PartyBuffs = CreateFrame("CheckButton", "PartyBuffs_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   PartyBuffs:SetPoint("TOPLEFT", 10, -240)
+  --   PartyBuffs_NameText:SetText("Show Party Frame Buffs")
+	--   PartyBuffs_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   PartyBuffs:SetChecked(DegiUIOptions.partybuffs)
+  --   PartyBuffs:SetScript("OnClick", function(PartyBuffs)
+  --       DegiUIOptions.partybuffs = PartyBuffs:GetChecked()
+  --       ApplyPartyBuffs()
+  --   end)
 
-  local BuffBorder = CreateFrame("CheckButton", "BuffBorder_Name", Panel, "ChatConfigCheckButtonTemplate")
-    BuffBorder:SetPoint("TOPLEFT", 10, -270)
-    BuffBorder_NameText:SetText("Buff Borders")
-    BuffBorder_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    BuffBorder.tooltip = "Adds borders to debuffs, eg. Poisons=Green, Disease=Yellow, etc. Weapon buffs always show"
-    BuffBorder:SetChecked(DegiUIOptions.buffborder)
-    BuffBorder:SetScript("OnClick", function(BuffBorder)
-        DegiUIOptions.buffborder = BuffBorder:GetChecked()
-    end)
+  -- local BuffBorder = CreateFrame("CheckButton", "BuffBorder_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   BuffBorder:SetPoint("TOPLEFT", 10, -270)
+  --   BuffBorder_NameText:SetText("Buff Borders")
+  --   BuffBorder_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   BuffBorder.tooltip = "Adds borders to debuffs, eg. Poisons=Green, Disease=Yellow, etc. Weapon buffs always show"
+  --   BuffBorder:SetChecked(DegiUIOptions.buffborder)
+  --   BuffBorder:SetScript("OnClick", function(BuffBorder)
+  --       DegiUIOptions.buffborder = BuffBorder:GetChecked()
+  --   end)
 
-  local Format = CreateFrame("CheckButton", "Format_Name", Panel, "ChatConfigCheckButtonTemplate")
-    Format:SetPoint("TOPLEFT", 10, -300)
-    Format_NameText:SetText("Current HP/Mana Value Format")
-    Format_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    Format.tooltip = "Shows health and mana as current value (Needs Status Text under Display in Interface Options set to Numeric Value)"
-    Format:SetChecked(DegiUIOptions.format)
-    Format:SetScript("OnClick", function(Format)
-        DegiUIOptions.format = Format:GetChecked()
-        ApplyFormat()
-    end)
+  -- local Format = CreateFrame("CheckButton", "Format_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   Format:SetPoint("TOPLEFT", 10, -300)
+  --   Format_NameText:SetText("Current HP/Mana Value Format")
+  --   Format_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   Format.tooltip = "Shows health and mana as current value (Needs Status Text under Display in Interface Options set to Numeric Value)"
+  --   Format:SetChecked(DegiUIOptions.format)
+  --   Format:SetScript("OnClick", function(Format)
+  --       DegiUIOptions.format = Format:GetChecked()
+  --       ApplyFormat()
+  --   end)
 
-  local Percent = CreateFrame("CheckButton", "Percent_Name", Panel, "ChatConfigCheckButtonTemplate")
-    Percent:SetPoint("TOPLEFT", 10, -330)
-    Percent_NameText:SetText("Target HP as Current Value and Percent")
-    Percent_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    Percent.tooltip = "Requires the above option checked and Status Text set to Numeric Value"
-    Percent:SetChecked(DegiUIOptions.percent)
-    Percent:SetScript("OnClick", function(Percent)
-        DegiUIOptions.percent = Percent:GetChecked()
-    end)
+  -- local Percent = CreateFrame("CheckButton", "Percent_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   Percent:SetPoint("TOPLEFT", 10, -330)
+  --   Percent_NameText:SetText("Target HP as Current Value and Percent")
+  --   Percent_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   Percent.tooltip = "Requires the above option checked and Status Text set to Numeric Value"
+  --   Percent:SetChecked(DegiUIOptions.percent)
+  --   Percent:SetScript("OnClick", function(Percent)
+  --       DegiUIOptions.percent = Percent:GetChecked()
+  --   end)
 
-	local StanceBar = CreateFrame("CheckButton", "StanceBar_Name", Panel, "ChatConfigCheckButtonTemplate")
-    StanceBar:SetPoint("TOPLEFT", 300, -60)
-    StanceBar_NameText:SetText("Hide Stance Bar (Turns invisible)")
-	  StanceBar_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    StanceBar:SetChecked(DegiUIOptions.stancebar)
-    StanceBar:SetScript("OnClick", function(StanceBar)
-        DegiUIOptions.stancebar = StanceBar:GetChecked()
-        ApplyStanceBar()
-    end)
+	-- local StanceBar = CreateFrame("CheckButton", "StanceBar_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   StanceBar:SetPoint("TOPLEFT", 300, -60)
+  --   StanceBar_NameText:SetText("Hide Stance Bar (Turns invisible)")
+	--   StanceBar_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   StanceBar:SetChecked(DegiUIOptions.stancebar)
+  --   StanceBar:SetScript("OnClick", function(StanceBar)
+  --       DegiUIOptions.stancebar = StanceBar:GetChecked()
+  --       ApplyStanceBar()
+  --   end)
 
-	local PetBarBackground = CreateFrame("CheckButton", "PetBarBackground_Name", Panel, "ChatConfigCheckButtonTemplate")
-    PetBarBackground:SetPoint("TOPLEFT", 300, -90)
-    PetBarBackground_NameText:SetText("Hide Pet Bar Background")
-  	PetBarBackground_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    PetBarBackground.tooltip = "Hides the background that shows behind pet bars when the bottom left actionbar isn't activated"
-    PetBarBackground:SetChecked(DegiUIOptions.petbarbackground)
-    PetBarBackground:SetScript("OnClick", function(PetBarBackground)
-        DegiUIOptions.petbarbackground = PetBarBackground:GetChecked()
-        ApplyPetBarBackground()
-    end)
+	-- local PetBarBackground = CreateFrame("CheckButton", "PetBarBackground_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   PetBarBackground:SetPoint("TOPLEFT", 300, -90)
+  --   PetBarBackground_NameText:SetText("Hide Pet Bar Background")
+  -- 	PetBarBackground_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   PetBarBackground.tooltip = "Hides the background that shows behind pet bars when the bottom left actionbar isn't activated"
+  --   PetBarBackground:SetChecked(DegiUIOptions.petbarbackground)
+  --   PetBarBackground:SetScript("OnClick", function(PetBarBackground)
+  --       DegiUIOptions.petbarbackground = PetBarBackground:GetChecked()
+  --       ApplyPetBarBackground()
+  --   end)
 
-	local BarHotkey = CreateFrame("CheckButton", "BarHotkey_Name", Panel, "ChatConfigCheckButtonTemplate")
-    BarHotkey:SetPoint("TOPLEFT", 300, -120)
-    BarHotkey_NameText:SetText("Hide Player Bar Hotkeys")
-  	BarHotkey_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    BarHotkey:SetChecked(DegiUIOptions.barhotkey)
-    BarHotkey:SetScript("OnClick", function(BarHotkey)
-        DegiUIOptions.barhotkey = BarHotkey:GetChecked()
-        ApplyBarHotkey()
-    end)
+	-- local BarHotkey = CreateFrame("CheckButton", "BarHotkey_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   BarHotkey:SetPoint("TOPLEFT", 300, -120)
+  --   BarHotkey_NameText:SetText("Hide Player Bar Hotkeys")
+  -- 	BarHotkey_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   BarHotkey:SetChecked(DegiUIOptions.barhotkey)
+  --   BarHotkey:SetScript("OnClick", function(BarHotkey)
+  --       DegiUIOptions.barhotkey = BarHotkey:GetChecked()
+  --       ApplyBarHotkey()
+  --   end)
 
-	local PetBarHotkey = CreateFrame("CheckButton", "PetBarHotkey_Name", Panel, "ChatConfigCheckButtonTemplate")
-    PetBarHotkey:SetPoint("TOPLEFT", 300, -150)
-    PetBarHotkey_NameText:SetText("Hide Pet Bar Hotkeys")
-  	PetBarHotkey_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    PetBarHotkey:SetChecked(DegiUIOptions.petbarhotkey)
-    PetBarHotkey:SetScript("OnClick", function(PetBarHotkey)
-        DegiUIOptions.petbarhotkey = PetBarHotkey:GetChecked()
-        ApplyPetBarHotkey()
-    end)
+	-- local PetBarHotkey = CreateFrame("CheckButton", "PetBarHotkey_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   PetBarHotkey:SetPoint("TOPLEFT", 300, -150)
+  --   PetBarHotkey_NameText:SetText("Hide Pet Bar Hotkeys")
+  -- 	PetBarHotkey_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   PetBarHotkey:SetChecked(DegiUIOptions.petbarhotkey)
+  --   PetBarHotkey:SetScript("OnClick", function(PetBarHotkey)
+  --       DegiUIOptions.petbarhotkey = PetBarHotkey:GetChecked()
+  --       ApplyPetBarHotkey()
+  --   end)
 
-	local LeatrixQuest = CreateFrame("CheckButton", "LeatrixQuest_Name", Panel, "ChatConfigCheckButtonTemplate")
-    LeatrixQuest:SetPoint("TOPLEFT", 300, -180)
-    LeatrixQuest_NameText:SetText("Leatrix Enhanced Quest Log")
-  	LeatrixQuest_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    LeatrixQuest.tooltip = "Compatibility fix for Leatrix Plus' Extended Quest Log setting"
-    LeatrixQuest:SetChecked(DegiUIOptions.leatrixquest)
-    LeatrixQuest:SetScript("OnClick", function(LeatrixQuest)
-        DegiUIOptions.leatrixquest = LeatrixQuest:GetChecked()
-        ApplyLeatrixQuest()
-    end)
+	-- local LeatrixQuest = CreateFrame("CheckButton", "LeatrixQuest_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   LeatrixQuest:SetPoint("TOPLEFT", 300, -180)
+  --   LeatrixQuest_NameText:SetText("Leatrix Enhanced Quest Log")
+  -- 	LeatrixQuest_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   LeatrixQuest.tooltip = "Compatibility fix for Leatrix Plus' Extended Quest Log setting"
+  --   LeatrixQuest:SetChecked(DegiUIOptions.leatrixquest)
+  --   LeatrixQuest:SetScript("OnClick", function(LeatrixQuest)
+  --       DegiUIOptions.leatrixquest = LeatrixQuest:GetChecked()
+  --       ApplyLeatrixQuest()
+  --   end)
 
-	local StringType = CreateFrame("CheckButton", "StringType_Name", Panel, "ChatConfigCheckButtonTemplate")
-    StringType:SetPoint("TOPLEFT", 300, -210)
-    StringType_NameText:SetText("Names Outline")
-  	StringType_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    StringType:SetChecked(DegiUIOptions.stringtype)
-    StringType:SetScript("OnClick", function(StringType)
-      DegiUIOptions.stringtype = StringType:GetChecked()
-		if DegiUIOptions.stringtype then
-			DegiUI_StringType = "OUTLINE"
-		else
-			DegiUI_StringType = "THIN"
-		end
-        ApplyFonts()
-    end)
-	    DegiUIOptions.stringtype = StringType:GetChecked()
-		if DegiUIOptions.stringtype then
-			DegiUI_StringType = "OUTLINE"
-		else
-			DegiUI_StringType = "THIN"
-		end
-        ApplyFonts()
+	-- local StringType = CreateFrame("CheckButton", "StringType_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   StringType:SetPoint("TOPLEFT", 300, -210)
+  --   StringType_NameText:SetText("Names Outline")
+  -- 	StringType_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   StringType:SetChecked(DegiUIOptions.stringtype)
+  --   StringType:SetScript("OnClick", function(StringType)
+  --     DegiUIOptions.stringtype = StringType:GetChecked()
+	-- 	if DegiUIOptions.stringtype then
+	-- 		DegiUI_StringType = "OUTLINE"
+	-- 	else
+	-- 		DegiUI_StringType = "THIN"
+	-- 	end
+  --       ApplyFonts()
+  --   end)
+	--     DegiUIOptions.stringtype = StringType:GetChecked()
+	-- 	if DegiUIOptions.stringtype then
+	-- 		DegiUI_StringType = "OUTLINE"
+	-- 	else
+	-- 		DegiUI_StringType = "THIN"
+	-- 	end
+  --       ApplyFonts()
 
-	local NumericalsType = CreateFrame("CheckButton", "NumericalsType_Name", Panel, "ChatConfigCheckButtonTemplate")
-    NumericalsType:SetPoint("TOPLEFT", 300, -240)
-    NumericalsType_NameText:SetText("Health/Mana Value Outline")
-  	NumericalsType_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
-    NumericalsType:SetChecked(DegiUIOptions.numericaltype)
-    NumericalsType:SetScript("OnClick", function(NumericalsType)
-      DegiUIOptions.numericaltype = NumericalsType:GetChecked()
-		if DegiUIOptions.numericaltype then
-			DegiUI_NumericalsType = "OUTLINE"
-		else
-			DegiUI_NumericalsType = "THIN"
-		end
-        ApplyFonts()
-    end)
-	    DegiUIOptions.numericaltype = NumericalsType:GetChecked()
-		if DegiUIOptions.numericaltype then
-			DegiUI_NumericalsType = "OUTLINE"
-		else
-			DegiUI_NumericalsType = "THIN"
-		end
-        ApplyFonts()
+	-- local NumericalsType = CreateFrame("CheckButton", "NumericalsType_Name", Panel, "ChatConfigCheckButtonTemplate")
+  --   NumericalsType:SetPoint("TOPLEFT", 300, -240)
+  --   NumericalsType_NameText:SetText("Health/Mana Value Outline")
+  -- 	NumericalsType_NameText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE");
+  --   NumericalsType:SetChecked(DegiUIOptions.numericaltype)
+  --   NumericalsType:SetScript("OnClick", function(NumericalsType)
+  --     DegiUIOptions.numericaltype = NumericalsType:GetChecked()
+	-- 	if DegiUIOptions.numericaltype then
+	-- 		DegiUI_NumericalsType = "OUTLINE"
+	-- 	else
+	-- 		DegiUI_NumericalsType = "THIN"
+	-- 	end
+  --       ApplyFonts()
+  --   end)
+	--     DegiUIOptions.numericaltype = NumericalsType:GetChecked()
+	-- 	if DegiUIOptions.numericaltype then
+	-- 		DegiUI_NumericalsType = "OUTLINE"
+	-- 	else
+	-- 		DegiUI_NumericalsType = "THIN"
+	-- 	end
+  --       ApplyFonts()
 
 	-- local note=Panel:CreateFontString(nil, "OVERLAY", "GameFontNormal");
   --   note:SetPoint("TOPLEFT",10, -360);
@@ -510,47 +512,47 @@ function f:CreateGUI()
   --   recommended:SetText("Recommended Addons:\n\nKuiNameplates or any nameplate addon to darken nameplates\n\nLeatrix Plus to hide chat buttons, bigger questlog, and much more\n\nBartender4 and Dominos Action Bars are supported\n\nTo get my fonts, check the Curseforge page description for instructions");
   --   recommended:SetFont("Fonts\\FRIZQT__.TTF", 13, "OUTLINE");
 
-	local name = "StringSizeSlider"
-        local template = "OptionsSliderTemplate"
-        local StringSizeSlider = CreateFrame("Slider", name, Panel, template)
-        StringSizeSlider:SetPoint("TOPLEFT",300, -290)
-        StringSizeSlider.textLow = _G[name.."Low"]
-        StringSizeSlider.textHigh = _G[name.."High"]
-        StringSizeSlider.text = _G[name.."Text"]
-        StringSizeSlider:SetMinMaxValues(8, 16)
-        StringSizeSlider.minValue, StringSizeSlider.maxValue = StringSizeSlider:GetMinMaxValues()
-        StringSizeSlider.textLow:SetText(StringSizeSlider.minValue)
-        StringSizeSlider.textHigh:SetText(StringSizeSlider.maxValue)
-        StringSizeSlider:SetValue(DegiUI_StringSize)
-        StringSizeSlider.text:SetText("Text Font Size: "..StringSizeSlider:GetValue(DegiUI_StringSize))
-        StringSizeSlider:SetValueStep(1)
-        StringSizeSlider:SetObeyStepOnDrag(true);
-        StringSizeSlider:SetScript("OnValueChanged", function(self,event,arg1)
-            StringSizeSlider.text:SetText("Font Size: "..StringSizeSlider:GetValue(DegiUI_StringSize))
-            DegiUI_StringSize = StringSizeSlider:GetValue()
-            ApplyFonts()
-        end)
+	-- local name = "StringSizeSlider"
+  --       local template = "OptionsSliderTemplate"
+  --       local StringSizeSlider = CreateFrame("Slider", name, Panel, template)
+  --       StringSizeSlider:SetPoint("TOPLEFT",300, -290)
+  --       StringSizeSlider.textLow = _G[name.."Low"]
+  --       StringSizeSlider.textHigh = _G[name.."High"]
+  --       StringSizeSlider.text = _G[name.."Text"]
+  --       StringSizeSlider:SetMinMaxValues(8, 16)
+  --       StringSizeSlider.minValue, StringSizeSlider.maxValue = StringSizeSlider:GetMinMaxValues()
+  --       StringSizeSlider.textLow:SetText(StringSizeSlider.minValue)
+  --       StringSizeSlider.textHigh:SetText(StringSizeSlider.maxValue)
+  --       StringSizeSlider:SetValue(DegiUI_StringSize)
+  --       StringSizeSlider.text:SetText("Text Font Size: "..StringSizeSlider:GetValue(DegiUI_StringSize))
+  --       StringSizeSlider:SetValueStep(1)
+  --       StringSizeSlider:SetObeyStepOnDrag(true);
+  --       StringSizeSlider:SetScript("OnValueChanged", function(self,event,arg1)
+  --           StringSizeSlider.text:SetText("Font Size: "..StringSizeSlider:GetValue(DegiUI_StringSize))
+  --           DegiUI_StringSize = StringSizeSlider:GetValue()
+  --           ApplyFonts()
+  --       end)
 
-	local name = "NumSizeSlider"
-        local template = "OptionsSliderTemplate"
-        local NumSizeSlider = CreateFrame("Slider", name, Panel, template)
-        NumSizeSlider:SetPoint("TOPLEFT", 460, -290)
-        NumSizeSlider.textLow = _G[name.."Low"]
-        NumSizeSlider.textHigh = _G[name.."High"]
-        NumSizeSlider.text = _G[name.."Text"]
-        NumSizeSlider:SetMinMaxValues(8, 16)
-        NumSizeSlider.minValue, NumSizeSlider.maxValue = NumSizeSlider:GetMinMaxValues()
-        NumSizeSlider.textLow:SetText(NumSizeSlider.minValue)
-        NumSizeSlider.textHigh:SetText(NumSizeSlider.maxValue)
-        NumSizeSlider:SetValue(DegiUI_NumSize)
-        NumSizeSlider.text:SetText("Numericals Font Size: "..NumSizeSlider:GetValue(DegiUI_NumSize))
-        NumSizeSlider:SetValueStep(1)
-        NumSizeSlider:SetObeyStepOnDrag(true);
-        NumSizeSlider:SetScript("OnValueChanged", function(self,event,arg1)
-            NumSizeSlider.text:SetText("Font Size: "..NumSizeSlider:GetValue(DegiUI_NumSize))
-            DegiUI_NumSize = NumSizeSlider:GetValue()
-            ApplyFonts()
-        end)
+	-- local name = "NumSizeSlider"
+  --       local template = "OptionsSliderTemplate"
+  --       local NumSizeSlider = CreateFrame("Slider", name, Panel, template)
+  --       NumSizeSlider:SetPoint("TOPLEFT", 460, -290)
+  --       NumSizeSlider.textLow = _G[name.."Low"]
+  --       NumSizeSlider.textHigh = _G[name.."High"]
+  --       NumSizeSlider.text = _G[name.."Text"]
+  --       NumSizeSlider:SetMinMaxValues(8, 16)
+  --       NumSizeSlider.minValue, NumSizeSlider.maxValue = NumSizeSlider:GetMinMaxValues()
+  --       NumSizeSlider.textLow:SetText(NumSizeSlider.minValue)
+  --       NumSizeSlider.textHigh:SetText(NumSizeSlider.maxValue)
+  --       NumSizeSlider:SetValue(DegiUI_NumSize)
+  --       NumSizeSlider.text:SetText("Numericals Font Size: "..NumSizeSlider:GetValue(DegiUI_NumSize))
+  --       NumSizeSlider:SetValueStep(1)
+  --       NumSizeSlider:SetObeyStepOnDrag(true);
+  --       NumSizeSlider:SetScript("OnValueChanged", function(self,event,arg1)
+  --           NumSizeSlider.text:SetText("Font Size: "..NumSizeSlider:GetValue(DegiUI_NumSize))
+  --           DegiUI_NumSize = NumSizeSlider:GetValue()
+  --           ApplyFonts()
+  --       end)
 
     return Panel
 
